@@ -9,7 +9,7 @@ public class Task {
     private String name;
     private String description;
     private Boolean isActive;
-    private Guest guest;
+    private User user;
 
     public Long getId() {
         return id;
@@ -43,11 +43,22 @@ public class Task {
         isActive = active;
     }
 
-    public Guest getGuest() {
-        return guest;
+    public User getUser() {
+        return user;
     }
 
-    public void setGuest(Guest guest) {
-        this.guest = guest;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", isActive=" + isActive +
+                ", user=" + user +
+                '}';
     }
 }

@@ -2,12 +2,9 @@ package ru.onbattle.vkBot.vk;
 
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
-import com.vk.api.sdk.objects.messages.Keyboard;
 import com.vk.api.sdk.objects.messages.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.onbattle.vkBot.core.Commander;
-import ru.onbattle.vkBot.core.keyboards.impl.MainFlow;
 import ru.onbattle.vkBot.dao.DataSource;
 
 import java.sql.Connection;

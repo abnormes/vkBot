@@ -1,9 +1,10 @@
 package ru.onbattle.vkBot.vk;
 
 import com.vk.api.sdk.objects.messages.Message;
-import ru.onbattle.vkBot.core.Commander;
-import ru.onbattle.vkBot.core.State;
-import ru.onbattle.vkBot.dao.domain.Guest;
+import ru.onbattle.vkBot.core.CommandExecutor;
+import ru.onbattle.vkBot.core.CommandState;
+import ru.onbattle.vkBot.dao.domain.User;
+import ru.onbattle.vkBot.dao.service.UserService;
 
 public class VkMessenger implements Runnable {
 
@@ -16,16 +17,18 @@ public class VkMessenger implements Runnable {
     @Override
     public void run() {
 
-        Boolean isGuest = false;
-        if (Guest.getGuests().containsKey(message.getFromId())) {
-            isGuest = true;
+        if (!User.getGuests().containsKey(message.getFromId())) {
+            User bufferUser = new UserService().get(message.getFromId());
+            if (bufferUser.getName() == null) {
+                User user = new User(message.getFromId(), CommandState.MAIN, false);
+                User.getGuests().put(message.getFromId(), user);
+            } else {
+                bufferUser.setUser(true);
+                bufferUser.setCommandState(CommandState.MAIN);
+                User.getGuests().put(message.getFromId(), bufferUser);
+            }
         }
-
-        if (!isGuest) {
-            Guest user = new Guest(message.getFromId(), State.MAIN, false);
-            Guest.getGuests().put(message.getFromId(), user);
-        }
-        Commander.execute(message);
+        CommandExecutor.execute(message);
 
     }
 }

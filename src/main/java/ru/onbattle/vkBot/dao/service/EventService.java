@@ -2,32 +2,30 @@ package ru.onbattle.vkBot.dao.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.onbattle.vkBot.dao.DataSource;
 import ru.onbattle.vkBot.dao.Dao;
+import ru.onbattle.vkBot.dao.DataSource;
 import ru.onbattle.vkBot.dao.domain.Event;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author abnormes on 26.05.2020
  * @project vkBot
  */
 public class EventService implements Dao<Event, Integer> {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(EventService.class);
 
     @Override
-    public Optional<Event> get(int id) {
-        return Optional.empty();
+    public Event get(Integer id) {
+        return null;
     }
 
     @Override
@@ -61,8 +59,8 @@ public class EventService implements Dao<Event, Integer> {
     }
 
     @Override
-    public Optional<Integer> save(Event object) {
-        return Optional.empty();
+    public void save(Event object) {
+
     }
 
     @Override

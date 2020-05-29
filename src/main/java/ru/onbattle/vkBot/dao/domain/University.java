@@ -1,21 +1,22 @@
 package ru.onbattle.vkBot.dao.domain;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * @author abnormes on 17.05.2020
  * @project vkBot
  */
 public class University {
-    private Long id;
+    private Integer id;
     private String name;
-    private List<Guest> users;
+    private List<User> users;
+    private static Map<Integer, University> universities = new HashMap();
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -27,11 +28,15 @@ public class University {
         this.name = name;
     }
 
-    public List<Guest> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<Guest> users) {
+    public static Map getUniversities() {
+        return universities;
+    }
+
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 }

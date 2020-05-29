@@ -1,6 +1,6 @@
 package ru.onbattle.vkBot.dao.domain;
 
-import ru.onbattle.vkBot.core.State;
+import ru.onbattle.vkBot.core.CommandState;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,36 +10,35 @@ import java.util.Map;
  * @author abnormes on 27.05.2020
  * @project vkBot
  */
-public class Guest {
+public class User {
 
     private Integer id;
-    private State state;
+    private CommandState commandState;
     private Boolean isUser;
     private String name;
     private Integer rating;
     private University university;
     private List<Task> taskList;
     private Game game;
-    private static Map<Integer, Guest> guests = new HashMap<>();
+    private static Map<Integer, User> guests = new HashMap<>();
 
-    public Guest(Integer id, State state, Boolean isUser) {
+    public User() {}
+
+    public User(Integer id, CommandState commandState, Boolean isUser) {
         this.id = id;
-        this.state = state;
+        this.commandState = commandState;
         this.isUser = isUser;
+        this.rating = 1400;
     }
 
-    public static Map<Integer, Guest> getGuests() {
+    public static Map<Integer, User> getGuests() {
         return guests;
     }
 
-    public static Guest getGuestById(int id) {
+    public static User getGuestById(int id) {
         return guests.get(id);
     }
 
-    public void buildUser() {
-        this.isUser = true;
-        /** DAO send to DB */
-    }
 
     public Boolean isUser() {
         return isUser;
@@ -97,11 +96,11 @@ public class Guest {
         this.id = id;
     }
 
-    public State getState() {
-        return state;
+    public CommandState getCommandState() {
+        return commandState;
     }
 
-    public void setState(State state) {
-        this.state = state;
+    public void setCommandState(CommandState commandState) {
+        this.commandState = commandState;
     }
 }

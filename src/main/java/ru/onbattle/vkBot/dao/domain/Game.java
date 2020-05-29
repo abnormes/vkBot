@@ -7,7 +7,7 @@ package ru.onbattle.vkBot.dao.domain;
 public class Game {
     private Long id;
     private String name;
-    private Guest guest;
+    private User user;
 
     public Long getId() {
         return id;
@@ -25,11 +25,11 @@ public class Game {
         this.name = name;
     }
 
-    public Guest getGuest() {
-        return guest;
+    public User getUser() {
+        return user;
     }
 
-    public void setGuest(Guest guest) {
-        this.guest = guest;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

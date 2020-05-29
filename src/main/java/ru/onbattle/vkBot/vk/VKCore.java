@@ -11,16 +11,14 @@ import com.vk.api.sdk.queries.messages.MessagesGetLongPollHistoryQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 
 public final class VKCore {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(VKCore.class);
-    private static VKCore instance;
+    private static volatile VKCore instance;
     private VkApiClient vk;
     private GroupActor actor;
     private static int ts;

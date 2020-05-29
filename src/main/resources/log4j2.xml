@@ -14,7 +14,11 @@
 
 
     <Loggers>
-        <Logger name="com.zaxxer.hikari" level="error">
+        <Logger name="com.zaxxer.hikari.HikariConfig" level="error">
+            <AppenderRef ref="Console"/>
         </Logger>
+        <Root level="Error">
+            <AppenderRef ref="Console"/>
+        </Root>
     </Loggers>
 </Configuration>

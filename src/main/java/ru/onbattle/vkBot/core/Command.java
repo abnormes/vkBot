@@ -1,7 +1,5 @@
 package ru.onbattle.vkBot.core;
 
-import com.vk.api.sdk.exceptions.ApiException;
-import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.objects.messages.Message;
 
 /**
@@ -12,11 +10,11 @@ public abstract class Command {
 
     private final String name;
 
-    private final State state;
+    private final CommandState commandState;
 
-    public Command(String name, State state){
+    public Command(String name, CommandState commandState){
         this.name = name;
-        this.state = state;
+        this.commandState = commandState;
     }
 
     public String getName() {
@@ -50,7 +48,7 @@ public abstract class Command {
         return this.name.hashCode();
     }
 
-    public State getState() { return state; }
+    public CommandState getCommandState() { return commandState; }
 
 
     /**
