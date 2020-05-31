@@ -1,9 +1,10 @@
 package ru.onbattle.vkBot.core.commands.impl.profile;
 
 import com.vk.api.sdk.objects.messages.Message;
-import ru.onbattle.vkBot.core.CommandState;
+import com.vk.api.sdk.objects.users.UserXtrCounters;
 import ru.onbattle.vkBot.core.CommandWithButton;
-import ru.onbattle.vkBot.core.keyboards.KeyboardFactory;
+import ru.onbattle.vkBot.core.State;
+import ru.onbattle.vkBot.core.flows.FlowFactory;
 import ru.onbattle.vkBot.dao.domain.User;
 import ru.onbattle.vkBot.vk.VKManager;
 
@@ -13,17 +14,23 @@ import ru.onbattle.vkBot.vk.VKManager;
  */
 public class Register extends CommandWithButton {
 
-    public Register(String name, CommandState commandState) {
-        super(name, commandState);
+    public Register(String name, State state) {
+        super(name, state);
     }
 
     @Override
     public void exec(Message message) {
+        register(message);
+    }
 
-        VKManager.sendKeyboard("Регистрация, введите ваше имя: ",
+    static void register(Message message) {
+        UserXtrCounters userInfo = VKManager.getUserInfo(message.getFromId());
+        String name = userInfo.getFirstName() + " " + userInfo.getLastName();
+
+        VKManager.sendKeyboard("Регистрация. \nВаше имя " + name + "?",
                 message.getPeerId(),
-                KeyboardFactory.getUniversityKeyboard());
+                FlowFactory.getKeyboard(FlowFactory.getNameFlow()).setOneTime(true));
 
-        User.getGuestById(message.getFromId()).setCommandState(CommandState.REGISTER);
+        User.getGuestById(message.getFromId()).setState(State.REGISTER);
     }
 }

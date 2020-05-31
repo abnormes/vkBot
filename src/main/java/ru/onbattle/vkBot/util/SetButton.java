@@ -14,21 +14,19 @@ import java.util.List;
  */
 public class SetButton {
 
-    private static final int DIMENSION_SIZE = 4;
-
     public static List<KeyboardButton> setButton(String label) {
         List<KeyboardButton> button = new ArrayList<>();
         CommonAdd(button, label);
         return button;
     }
 
-    public static List<List<KeyboardButton>> setButton(List<String> list) {
+    public static List<List<KeyboardButton>> setButton(List<String> list, int dimensionSize) {
 
         List<List<KeyboardButton>> buttonsList = new ArrayList<>();
 
-        for (int i = 0; i < list.size(); i+=DIMENSION_SIZE) {
-            List<KeyboardButton> buttons = new ArrayList<>(DIMENSION_SIZE);
-            for (int j = 0; j < DIMENSION_SIZE && (i + j) < list.size(); j++) {
+        for (int i = 0; i < list.size(); i+=dimensionSize) {
+            List<KeyboardButton> buttons = new ArrayList<>(dimensionSize);
+            for (int j = 0; j < dimensionSize && (i + j) < list.size(); j++) {
                 CommonAdd(buttons, list.get(i + j));
             }
             buttonsList.add(buttons);

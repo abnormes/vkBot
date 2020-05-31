@@ -1,9 +1,10 @@
 package ru.onbattle.vkBot.core.commands.impl.main;
 
 import com.vk.api.sdk.objects.messages.Message;
-import ru.onbattle.vkBot.core.CommandState;
+import ru.onbattle.vkBot.core.State;
 import ru.onbattle.vkBot.core.CommandWithButton;
-import ru.onbattle.vkBot.core.keyboards.KeyboardFactory;
+import ru.onbattle.vkBot.core.commands.impl.profile.EditProfile;
+import ru.onbattle.vkBot.core.flows.FlowFactory;
 import ru.onbattle.vkBot.dao.domain.User;
 import ru.onbattle.vkBot.vk.VKManager;
 
@@ -13,7 +14,7 @@ import ru.onbattle.vkBot.vk.VKManager;
  */
 public class UserProfile extends CommandWithButton {
 
-    public UserProfile(String name, CommandState commandState) { super(name, commandState); }
+    public UserProfile(String name, State state) { super(name, state); }
 
     @Override
     public void exec(Message message)  {
@@ -21,15 +22,15 @@ public class UserProfile extends CommandWithButton {
         if (User.getGuests().get(message.getFromId()).isUser()) {
             VKManager.sendKeyboard("Ваш профиль",
                     message.getPeerId(),
-                    KeyboardFactory.getRegisteredKeyboard());
+                    FlowFactory.getKeyboard(FlowFactory.getRegisteredFlow()));
 
-            User.getGuestById(message.getFromId()).setCommandState(CommandState.PROFILE_REGISTERED);
+            User.getGuestById(message.getFromId()).setState(State.PROFILE_REGISTERED);
         } else {
             VKManager.sendKeyboard("Вы не зарегистрированы",
                     message.getPeerId(),
-                    KeyboardFactory.getUnregisteredKeyboard());
+                    FlowFactory.getKeyboard(FlowFactory.getUnregisteredFlow()));
 
-            User.getGuestById(message.getFromId()).setCommandState(CommandState.PROFILE_UNREGISTERED);
+            User.getGuestById(message.getFromId()).setState(State.PROFILE_UNREGISTERED);
         }
     }
 }

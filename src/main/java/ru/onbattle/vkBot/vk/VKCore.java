@@ -36,15 +36,15 @@ public final class VKCore {
             prop.load(VKCore.class.getResourceAsStream("/application.properties"));
             groupId = Integer.valueOf(prop.getProperty("vk.group-id"));
             access_token = prop.getProperty("vk.token");
-            actor = new GroupActor(groupId, access_token);
 
+            actor = new GroupActor(groupId, access_token);
             ts = vk.messages().getLongPollServer(actor).execute().getTs();
         } catch (IOException e) {
             LOGGER.error("Failed to load configuration file");
         }
     }
 
-    public static VKCore getInstance() {
+    synchronized public static VKCore getInstance() {
         if (instance == null) {
             try {
                 instance = new VKCore();

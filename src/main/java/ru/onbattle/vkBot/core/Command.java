@@ -10,11 +10,11 @@ public abstract class Command {
 
     private final String name;
 
-    private final CommandState commandState;
+    private final State state;
 
-    public Command(String name, CommandState commandState){
+    public Command(String name, State state){
         this.name = name;
-        this.commandState = commandState;
+        this.state = state;
     }
 
     public String getName() {
@@ -48,7 +48,7 @@ public abstract class Command {
         return this.name.hashCode();
     }
 
-    public CommandState getCommandState() { return commandState; }
+    public State getState() { return state; }
 
 
     /**

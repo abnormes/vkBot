@@ -1,6 +1,6 @@
 package ru.onbattle.vkBot.dao.domain;
 
-import ru.onbattle.vkBot.core.CommandState;
+import ru.onbattle.vkBot.core.State;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Map;
 public class User {
 
     private Integer id;
-    private CommandState commandState;
+    private State state;
     private Boolean isUser;
     private String name;
     private Integer rating;
@@ -24,9 +24,9 @@ public class User {
 
     public User() {}
 
-    public User(Integer id, CommandState commandState, Boolean isUser) {
+    public User(Integer id, State state, Boolean isUser) {
         this.id = id;
-        this.commandState = commandState;
+        this.state = state;
         this.isUser = isUser;
         this.rating = 1400;
     }
@@ -96,11 +96,11 @@ public class User {
         this.id = id;
     }
 
-    public CommandState getCommandState() {
-        return commandState;
+    public State getState() {
+        return state;
     }
 
-    public void setCommandState(CommandState commandState) {
-        this.commandState = commandState;
+    public void setState(State state) {
+        this.state = state;
     }
 }

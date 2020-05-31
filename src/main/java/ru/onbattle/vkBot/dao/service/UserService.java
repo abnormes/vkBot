@@ -2,17 +2,15 @@ package ru.onbattle.vkBot.dao.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.onbattle.vkBot.core.CommandState;
+import ru.onbattle.vkBot.core.State;
 import ru.onbattle.vkBot.dao.Dao;
 import ru.onbattle.vkBot.dao.DataSource;
-import ru.onbattle.vkBot.dao.domain.Task;
 import ru.onbattle.vkBot.dao.domain.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -37,7 +35,7 @@ public class UserService implements Dao<User, Integer> {
                     user.setName(resultSet.getString("user_name"));
                     user.setRating(resultSet.getInt("user_rating"));
                     user.setUser(true);
-                    user.setCommandState(CommandState.MAIN);
+                    user.setState(State.MAIN);
                 }
                 resultSet.close();
             } catch (SQLException e) {
@@ -81,7 +79,26 @@ public class UserService implements Dao<User, Integer> {
 
     @Override
     public void update(User object) {
+        String sql = "UPDATE users "
+                + "SET "
+                + "user_name = ?, "
+                + "univer_id = ? "
+                + "WHERE "
+                + "user_id = " + object.getId();
 
+        try (Connection connection = DataSource.getConnection()) {
+
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, object.getName());
+                statement.setInt(2, object.getUniversity().getId());
+                statement.execute();
+                LOGGER.info("Row for user " + object.getName() + " updated successfully");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -21,8 +21,8 @@ public abstract class CommandWithButton extends Command {
     private String label;
 
     public CommandWithButton(String name,
-                             CommandState commandState) {
-        super(name, commandState);
+                             State state) {
+        super(name, state);
         this.label = name;
         this.buttonType = KeyboardButtonActionType.TEXT;
         this.buttonColor = KeyboardButtonColor.DEFAULT;

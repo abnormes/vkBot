@@ -1,4 +1,4 @@
-package ru.onbattle.vkBot.core.keyboards;
+package ru.onbattle.vkBot.core.flows;
 
 import com.vk.api.sdk.objects.messages.KeyboardButton;
 import ru.onbattle.vkBot.core.CommandWithButton;
@@ -23,7 +23,7 @@ public class Flow {
     }
 
     public Boolean addCommand(CommandWithButton command) {
-        return buttons.add(command.getButton()) ? true : false;
+        return buttons.add(command.getButton());
     }
 
     public Boolean addCommands(List<CommandWithButton> commands) {
@@ -34,12 +34,34 @@ public class Flow {
     }
 
     public Boolean addButton(List<KeyboardButton> button) {
-        return buttons.add(button) ? true : false;
+        return buttons.add(button);
     }
 
     public Boolean addButtons(List<List<KeyboardButton>> buttons) {
         for(List<KeyboardButton> button : buttons) {
             if (!addButton(button))
+                return false;
+        }
+        return true;
+    }
+
+    public Boolean setButton(List<KeyboardButton> button) {
+        if (buttons.isEmpty()) {
+            return addButton(button);
+        } else {
+            this.buttons.clear();
+            if (!addButton(button))
+                return false;
+        }
+        return true;
+    }
+
+    public Boolean setButtons(List<List<KeyboardButton>> buttons) {
+        if (buttons.isEmpty()) {
+            return addButtons(buttons);
+        } else {
+            this.buttons.clear();
+            if (!addButtons(buttons))
                 return false;
         }
         return true;
