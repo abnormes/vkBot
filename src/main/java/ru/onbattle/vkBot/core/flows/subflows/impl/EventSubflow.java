@@ -6,6 +6,7 @@ import ru.onbattle.vkBot.dao.domain.Event;
 import ru.onbattle.vkBot.dao.service.EventService;
 import ru.onbattle.vkBot.util.SetButton;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -16,14 +17,20 @@ import java.util.List;
  */
 public class EventSubflow extends Subflow {
 
+    public static Collection getEvents() {
+        return new EventService().getAll();
+    }
+
     @Override
     public void run() {
-        Collection<Event> eventList = new EventService().getAll();
-        List<String> events = new ArrayList<>();
+        Collection<Event> events = getEvents();
+        List<String> eventList = new ArrayList<>();
 
-        for (Event event : eventList) {
-            events.add(event.getName());
+        for (Event event : events) {
+            if (event.getDate().isAfter(OffsetDateTime.now())) {
+                eventList.add(event.getName());
+            }
         }
-        FlowFactory.addButtonsToFlow(FlowFactory.getEventFlow(), SetButton.setButton(events, 1));
+        FlowFactory.addButtonsToFlow(FlowFactory.getEventFlow(), SetButton.setButton(eventList, 2));
     }
 }
