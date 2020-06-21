@@ -6,10 +6,7 @@ import ru.onbattle.vkBot.dao.Dao;
 import ru.onbattle.vkBot.dao.DataSource;
 import ru.onbattle.vkBot.dao.domain.Event;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,7 +22,27 @@ public class EventService implements Dao<Event, Integer> {
 
     @Override
     public Event get(Integer id) {
-        return null;
+        String sql = "SELECT * FROM events WHERE event_id = " + id;
+        Event event = new Event();
+
+        try (Connection connection = DataSource.getConnection()) {
+
+            try (PreparedStatement stm = connection.prepareStatement(sql)) {
+                ResultSet resultSet = stm.executeQuery();
+                while (resultSet.next()) {
+                    event.setId(resultSet.getInt("event_id"));
+                    event.setName(resultSet.getString("event_name"));
+                    event.setDate(resultSet.getObject("event_date", OffsetDateTime.class));
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return event;
     }
 
     @Override
@@ -39,10 +56,9 @@ public class EventService implements Dao<Event, Integer> {
                 ResultSet resultSet = stm.executeQuery();
                 while (resultSet.next()) {
                     Event event = new Event();
-                    event.setId(resultSet.getLong("event_id"));
+                    event.setId(resultSet.getInt("event_id"));
                     event.setName(resultSet.getString("event_name"));
                     event.setDate(resultSet.getObject("event_date", OffsetDateTime.class));
-                    event.setDescription(resultSet.getString("event_description"));
                     events.add(event);
                 }
                 resultSet.close();
@@ -60,16 +76,65 @@ public class EventService implements Dao<Event, Integer> {
 
     @Override
     public void save(Event object) {
+        String sql = "INSERT INTO "
+                + "events (event_name, event_date) "
+                + "VALUES (?, ?)";
 
+        try (Connection connection = DataSource.getConnection()) {
+
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, object.getName());
+                statement.setObject(2, object.getDate());
+
+                statement.execute();
+                LOGGER.info("Row for event " + object.getName() + " created successfully");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(Event object) {
+        String sql = "UPDATE events "
+                + "SET "
+                + "event_name = ?, "
+                + "event_date = ?, "
+                + "WHERE "
+                + "event_id = " + object.getId();
 
+        try (Connection connection = DataSource.getConnection()) {
+
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, object.getName());
+                if (object.getDate() == null) {
+                    statement.setNull(2, Types.NULL);
+                } else {
+                    statement.setObject(2, object.getDate());
+                }
+                statement.execute();
+                LOGGER.info("Row for event " + object.getName() + " updated successfully");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Event object) {
+        String sql = "DELETE FROM events WHERE event_name = ?";
 
+        try(Connection connection = DataSource.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, object.getName());
+                statement.execute();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

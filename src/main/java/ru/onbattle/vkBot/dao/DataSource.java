@@ -21,10 +21,10 @@ public class DataSource {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getName());
 
     // Hikari connection
-    private static HikariConfig config;
     private static HikariDataSource ds;
 
     static {
+        HikariConfig config;
         Properties prop = new Properties();
         try {
             prop.load(DataSource.class.getResourceAsStream("/hikari.properties"));

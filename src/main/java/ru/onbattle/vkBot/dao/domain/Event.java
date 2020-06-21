@@ -1,7 +1,5 @@
 package ru.onbattle.vkBot.dao.domain;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 /**
@@ -10,16 +8,16 @@ import java.time.OffsetDateTime;
  */
 public class Event {
 
-    private Long id;
+    private Integer id;
     private String name;
     private String description;
     private OffsetDateTime date;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

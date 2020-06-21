@@ -1,5 +1,7 @@
 package ru.onbattle.vkBot.dao.domain;
 
+import java.time.LocalDate;
+
 /**
  * @author abnormes on 17.05.2020
  * @project vkBot
@@ -8,8 +10,10 @@ public class Task {
     private Long id;
     private String name;
     private String description;
+    private String result;
     private Boolean isActive;
-    private User user;
+    private TaskType type;
+    private LocalDate date;
 
     public Long getId() {
         return id;
@@ -35,6 +39,14 @@ public class Task {
         this.description = description;
     }
 
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
     public Boolean getActive() {
         return isActive;
     }
@@ -43,22 +55,19 @@ public class Task {
         isActive = active;
     }
 
-    public User getUser() {
-        return user;
+    public TaskType getType() {
+        return type;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setType(TaskType type) {
+        this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return "Task{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", isActive=" + isActive +
-                ", user=" + user +
-                '}';
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }

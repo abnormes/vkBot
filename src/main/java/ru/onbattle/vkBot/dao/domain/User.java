@@ -1,10 +1,8 @@
 package ru.onbattle.vkBot.dao.domain;
 
-import ru.onbattle.vkBot.core.State;
+import ru.onbattle.vkBot.commands.State;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author abnormes on 27.05.2020
@@ -14,21 +12,26 @@ public class User {
 
     private Integer id;
     private State state;
+    private Set<Role> roles;
     private Boolean isUser;
     private String name;
     private Integer rating;
     private University university;
-    private List<Task> taskList;
+    private HashMap<String, Task> taskList;
+    private boolean isActive;
     private Game game;
-    private static Map<Integer, User> guests = new HashMap<>();
+    private static final Map<Integer, User> guests = new HashMap<>();
 
-    public User() {}
+    public User() {
+        rating = 1400;
+    }
 
     public User(Integer id, State state, Boolean isUser) {
         this.id = id;
         this.state = state;
         this.isUser = isUser;
         this.rating = 1400;
+        roles = Collections.singleton(Role.USER);
     }
 
     public static Map<Integer, User> getGuests() {
@@ -38,7 +41,6 @@ public class User {
     public static User getGuestById(int id) {
         return guests.get(id);
     }
-
 
     public Boolean isUser() {
         return isUser;
@@ -72,11 +74,11 @@ public class User {
         this.university = university;
     }
 
-    public List<Task> getTaskList() {
+    public HashMap<String, Task> getTaskList() {
         return taskList;
     }
 
-    public void setTaskList(List<Task> taskList) {
+    public void setTaskList(HashMap<String, Task> taskList) {
         this.taskList = taskList;
     }
 
@@ -86,6 +88,14 @@ public class User {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public Integer getId() {
@@ -102,5 +112,13 @@ public class User {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

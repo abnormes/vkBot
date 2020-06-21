@@ -10,7 +10,7 @@ public class University {
     private Integer id;
     private String name;
     private List<User> users;
-    private static Map<Integer, University> universities = new HashMap();
+    private static final Map<Integer, University> universities = new HashMap();
 
     public Integer getId() {
         return id;

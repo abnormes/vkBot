@@ -1,7 +1,7 @@
 package ru.onbattle.vkBot;
 
 import com.vk.api.sdk.exceptions.ApiException;
-import ru.onbattle.vkBot.vk.VKServer;
+import ru.onbattle.vkBot.core.VKServer;
 
 public class VkBotApplication {
 

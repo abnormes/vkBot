@@ -1,12 +1,15 @@
 package ru.onbattle.vkBot.dao.domain;
 
 /**
- * @author abnormes on 19.05.2020
+ * @author abnormes on 10.06.2020
  * @project vkBot
  */
-public class Game {
+public class Team {
+
     private Integer id;
     private String name;
+    private TeamType type;
+    private User owner;
 
     public Integer getId() {
         return id;
@@ -22,5 +25,13 @@ public class Game {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }
