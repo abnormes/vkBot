@@ -10,7 +10,6 @@ public class CommandExecutor {
      * @param message message from user
      */
     public static void execute(Message message) {
-
         CommandDeterminant.getCommand(CommandManager.getCommands(), message).exec(message);
     }
 

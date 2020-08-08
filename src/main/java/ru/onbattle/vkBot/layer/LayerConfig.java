@@ -1,7 +1,7 @@
-package ru.onbattle.vkBot.flows;
+package ru.onbattle.vkBot.layer;
 
-import ru.onbattle.vkBot.flows.subflows.Sublayer;
-import ru.onbattle.vkBot.flows.subflows.impl.*;
+import ru.onbattle.vkBot.layer.sublayer.Sublayer;
+import ru.onbattle.vkBot.layer.sublayer.impl.*;
 
 import java.util.List;
 

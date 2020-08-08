@@ -6,12 +6,10 @@ import ru.onbattle.vkBot.commands.State;
 import ru.onbattle.vkBot.core.VKManager;
 import ru.onbattle.vkBot.dao.domain.Game;
 import ru.onbattle.vkBot.dao.domain.Role;
-import ru.onbattle.vkBot.dao.domain.University;
 import ru.onbattle.vkBot.dao.domain.User;
 import ru.onbattle.vkBot.dao.service.GameService;
-import ru.onbattle.vkBot.dao.service.UniversityService;
 import ru.onbattle.vkBot.dao.service.UserService;
-import ru.onbattle.vkBot.flows.LayerFactory;
+import ru.onbattle.vkBot.layer.LayerFactory;
 
 import java.util.Collection;
 import java.util.Set;
@@ -26,7 +24,7 @@ public class RegisterStep5 extends Command {
         super(name, state);
     }
 
-    private synchronized boolean getUniversities(String gameName, Game game) {
+    private synchronized boolean getGames(String gameName, Game game) {
         Collection<Game> games = new GameService().getAll();
 
         for (Game elem : games) {
@@ -45,7 +43,7 @@ public class RegisterStep5 extends Command {
             String gameName = message.getText();
             Game game = new Game();
 
-            boolean isGame = getUniversities(gameName, game);
+            boolean isGame = getGames(gameName, game);
 
             if (isGame) {
                 User user = User.getGuestById(message.getFromId());

@@ -6,8 +6,8 @@ import ru.onbattle.vkBot.commands.State;
 import ru.onbattle.vkBot.core.VKManager;
 import ru.onbattle.vkBot.dao.domain.Event;
 import ru.onbattle.vkBot.dao.domain.User;
-import ru.onbattle.vkBot.flows.LayerFactory;
-import ru.onbattle.vkBot.flows.subflows.impl.EventSublayer;
+import ru.onbattle.vkBot.layer.LayerFactory;
+import ru.onbattle.vkBot.layer.sublayer.impl.EventSublayer;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;

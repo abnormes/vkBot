@@ -85,7 +85,7 @@ public class UserService implements Dao<User, Integer> {
                 + "users (user_id, user_name, user_rating, univer_id, game_id, user_is_active) "
                 + "VALUES (?, ?, ?, ?, ?, ?);"
                 + "INSERT INTO "
-                + "user_roles (user_user_id, user_roles) "
+                + "user_role (user_id, roles) "
                 + "VALUES (?, ?);";
 
         try (Connection connection = DataSource.getConnection()) {
@@ -128,10 +128,10 @@ public class UserService implements Dao<User, Integer> {
                 + "user_is_active = ? "
                 + "WHERE "
                 + "user_id = " + object.getId() + "; "
-                + "UPDATE user_roles "
+                + "UPDATE user_role "
                 + "SET "
-                + "user_user_id = ?,"
-                + "user_roles = ?;";
+                + "user_id = ?,"
+                + "roles = ?;";
 
         try (Connection connection = DataSource.getConnection()) {
 

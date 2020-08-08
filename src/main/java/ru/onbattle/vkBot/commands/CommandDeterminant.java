@@ -2,7 +2,7 @@ package ru.onbattle.vkBot.commands;
 
 import com.vk.api.sdk.objects.messages.Message;
 import ru.onbattle.vkBot.dao.domain.User;
-import ru.onbattle.vkBot.flows.LayerDeterminant;
+import ru.onbattle.vkBot.layer.LayerDeterminant;
 
 import java.util.Collection;
 

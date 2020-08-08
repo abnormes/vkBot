@@ -4,7 +4,7 @@ import com.vk.api.sdk.objects.messages.Message;
 import com.vk.api.sdk.objects.users.UserXtrCounters;
 import ru.onbattle.vkBot.commands.CommandWithButton;
 import ru.onbattle.vkBot.commands.State;
-import ru.onbattle.vkBot.flows.LayerFactory;
+import ru.onbattle.vkBot.layer.LayerFactory;
 import ru.onbattle.vkBot.dao.domain.User;
 import ru.onbattle.vkBot.core.VKManager;
 

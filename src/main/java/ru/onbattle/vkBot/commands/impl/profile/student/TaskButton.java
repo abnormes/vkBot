@@ -7,7 +7,7 @@ import ru.onbattle.vkBot.core.VKManager;
 import ru.onbattle.vkBot.dao.domain.Task;
 import ru.onbattle.vkBot.dao.domain.User;
 import ru.onbattle.vkBot.dao.service.TaskService;
-import ru.onbattle.vkBot.flows.LayerFactory;
+import ru.onbattle.vkBot.layer.LayerFactory;
 import ru.onbattle.vkBot.util.SetButton;
 
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public class TaskButton extends CommandWithButton {
                 VKManager.sendKeyboard("Ваши задачи на сегодня", message.getPeerId(),
                         LayerFactory.getKeyboard(LayerFactory.getTaskLayer()));
 
-                User.getGuestById(message.getFromId()).setState(State.TASK1);
+                User.getGuestById(message.getFromId()).setState(State.TASK_1);
             }
         };
 

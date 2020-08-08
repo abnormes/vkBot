@@ -5,7 +5,7 @@ import ru.onbattle.vkBot.commands.CommandWithButton;
 import ru.onbattle.vkBot.commands.State;
 import ru.onbattle.vkBot.core.VKManager;
 import ru.onbattle.vkBot.dao.domain.User;
-import ru.onbattle.vkBot.flows.LayerFactory;
+import ru.onbattle.vkBot.layer.LayerFactory;
 
 /**
  * @author abnormes on 10.06.2020

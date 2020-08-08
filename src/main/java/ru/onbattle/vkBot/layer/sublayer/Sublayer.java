@@ -1,4 +1,4 @@
-package ru.onbattle.vkBot.flows.subflows;
+package ru.onbattle.vkBot.layer.sublayer;
 
 /**
  * @author abnormes on 31.05.2020

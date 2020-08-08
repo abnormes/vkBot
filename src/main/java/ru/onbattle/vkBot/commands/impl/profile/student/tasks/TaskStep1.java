@@ -8,7 +8,7 @@ import ru.onbattle.vkBot.dao.domain.Task;
 import ru.onbattle.vkBot.dao.domain.TaskType;
 import ru.onbattle.vkBot.dao.domain.User;
 import ru.onbattle.vkBot.dao.service.TaskService;
-import ru.onbattle.vkBot.flows.LayerFactory;
+import ru.onbattle.vkBot.layer.LayerFactory;
 
 /**
  * @author abnormes on 13.06.2020
@@ -38,7 +38,7 @@ public class TaskStep1 extends Command {
                         + "\nТип задачи: "
                         + type;
                 VKManager.sendKeyboard(text, message.getFromId(), LayerFactory.getKeyboard(LayerFactory.getTaskInfoLayer()));
-                User.getGuestById(message.getFromId()).setState(State.TASK2);
+                User.getGuestById(message.getFromId()).setState(State.TASK_2);
             } else {
                 VKManager.sendMessage("Простите, такой задачи нет или она уже выполнена", message.getPeerId());
             }

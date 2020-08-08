@@ -4,9 +4,10 @@ import ru.onbattle.vkBot.commands.impl.Main;
 import ru.onbattle.vkBot.commands.impl.main.About;
 import ru.onbattle.vkBot.commands.impl.profile.*;
 import ru.onbattle.vkBot.commands.impl.UserProfile;
+import ru.onbattle.vkBot.commands.impl.profile.student.Rating;
 import ru.onbattle.vkBot.commands.impl.profile.student.TaskButton;
-import ru.onbattle.vkBot.flows.LayerConfig;
-import ru.onbattle.vkBot.flows.LayerFactory;
+import ru.onbattle.vkBot.layer.LayerConfig;
+import ru.onbattle.vkBot.layer.LayerFactory;
 
 import java.util.HashSet;
 import java.util.List;
@@ -30,6 +31,7 @@ public class CommandManager {
         Command taskList = new TaskButton("Список задач", State.STUDENT_PROFILE);
         Command editProfile = new EditProfile("Редактировать профиль", State.PROFILE_REGISTERED);
         Command studentButton = new StudentButton("Меню студента", State.PROFILE_REGISTERED);
+        Command rating = new Rating("Ваш рейтинг", State.STUDENT_PROFILE);
 
         // Adding first level commands to collection
         COMMANDS.add(userProfile);
@@ -46,7 +48,7 @@ public class CommandManager {
         LAYER_CONFIG.init(LayerFactory.getEventLayer(), List.of(userProfile, main));
         LAYER_CONFIG.init(LayerFactory.getRegisteredLayer(), List.of(studentButton, eventButton, editProfile, main));
         LAYER_CONFIG.init(LayerFactory.getUnregisteredLayer(), List.of(register, main));
-        LAYER_CONFIG.init(LayerFactory.getStudentLayer(), List.of(taskList, userProfile));
+        LAYER_CONFIG.init(LayerFactory.getStudentLayer(), List.of(taskList, rating, userProfile));
         LAYER_CONFIG.init(LayerFactory.getTaskLayer(), List.of(userProfile));
         LAYER_CONFIG.init(LayerFactory.getTaskInfoLayer(), List.of(userProfile));
     }

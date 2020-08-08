@@ -1,4 +1,4 @@
-package ru.onbattle.vkBot.flows;
+package ru.onbattle.vkBot.layer;
 
 import com.vk.api.sdk.objects.messages.Keyboard;
 import com.vk.api.sdk.objects.messages.KeyboardButton;

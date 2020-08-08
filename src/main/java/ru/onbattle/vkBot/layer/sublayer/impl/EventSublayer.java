@@ -1,7 +1,7 @@
-package ru.onbattle.vkBot.flows.subflows.impl;
+package ru.onbattle.vkBot.layer.sublayer.impl;
 
-import ru.onbattle.vkBot.flows.LayerFactory;
-import ru.onbattle.vkBot.flows.subflows.Sublayer;
+import ru.onbattle.vkBot.layer.LayerFactory;
+import ru.onbattle.vkBot.layer.sublayer.Sublayer;
 import ru.onbattle.vkBot.dao.domain.Event;
 import ru.onbattle.vkBot.dao.service.EventService;
 import ru.onbattle.vkBot.util.SetButton;

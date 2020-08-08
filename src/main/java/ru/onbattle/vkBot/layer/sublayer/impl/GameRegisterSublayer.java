@@ -1,9 +1,9 @@
-package ru.onbattle.vkBot.flows.subflows.impl;
+package ru.onbattle.vkBot.layer.sublayer.impl;
 
 import ru.onbattle.vkBot.dao.domain.Game;
 import ru.onbattle.vkBot.dao.service.GameService;
-import ru.onbattle.vkBot.flows.LayerFactory;
-import ru.onbattle.vkBot.flows.subflows.Sublayer;
+import ru.onbattle.vkBot.layer.LayerFactory;
+import ru.onbattle.vkBot.layer.sublayer.Sublayer;
 import ru.onbattle.vkBot.util.SetButton;
 
 import java.util.ArrayList;

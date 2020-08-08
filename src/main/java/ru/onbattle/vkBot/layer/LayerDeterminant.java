@@ -1,4 +1,4 @@
-package ru.onbattle.vkBot.flows;
+package ru.onbattle.vkBot.layer;
 
 import ru.onbattle.vkBot.commands.Command;
 import ru.onbattle.vkBot.commands.State;
@@ -27,9 +27,9 @@ public class LayerDeterminant {
         }
 
         // Task sublayer
-        if (userState.equals(State.TASK1)) {
+        if (userState.equals(State.TASK_1)) {
             return new TaskStep1("task_one", State.TASK);
-        } else if (userState.equals(State.TASK2)) {
+        } else if (userState.equals(State.TASK_2)) {
             return new TaskStep1("task_two", State.TASK);
         }
         return new Unknown("unknown command", State.ALL);
