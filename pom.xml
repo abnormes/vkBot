@@ -10,42 +10,22 @@
 
 	<properties>
 		<java-version>11</java-version>
+		<vk-sdk-version>1.0.9</vk-sdk-version>
+		<junit-5-version>5.7.2</junit-5-version>
 	</properties>
 
 
 	<dependencies>
 		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.6.2</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.12</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.2.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.zaxxer</groupId>
-			<artifactId>HikariCP</artifactId>
-			<version>3.4.5</version>
-		</dependency>
-		<dependency>
 			<groupId>com.vk.api</groupId>
 			<artifactId>sdk</artifactId>
-			<version>1.0.6</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-slf4j-impl</artifactId>
-				</exclusion>
-			</exclusions>
+			<version>${vk-sdk-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit-5-version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

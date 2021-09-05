@@ -1,2 +1,4 @@
-package ru.vk_bot;public class Starter {
+package ru.vk_bot;
+
+public class Starter {
 }
